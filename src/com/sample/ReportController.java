@@ -28,8 +28,8 @@ public class ReportController extends HttpServlet {
         String retrieveReportsQuery = "SELECT " +
             "REPORT_ID, EQUIPMENT_TYPE, ITEM_LOC_ID, REPORT_FLOOR, " +
             "REPORT_ROOM, REPORT_ISSUE, REPORT_PICTURE, " +
-            "REC_INST_DT " +
-            "FROM C##FMO_ADM.FMO_ITEM_REPORTS " +
+            "REC_INST_DT, REC_INST_BY, STATUS, REPORT_CODE " +
+            "FROM FMO_ITEM_REPORTS " +
             "ORDER BY REC_INST_DT DESC";
 
         try (Connection connection = PooledConnection.getConnection();
@@ -50,7 +50,10 @@ public class ReportController extends HttpServlet {
                     rs.getString("REPORT_ROOM"),
                     rs.getString("REPORT_ISSUE"),
                     reportImage,
-                    rs.getDate("REC_INST_DT")
+                    rs.getDate("REC_INST_DT"),
+                    rs.getString("REC_INST_BY"),
+                    rs.getInt("STATUS"),
+                    rs.getString("REPORT_CODE")
                 );
                 reportsList.add(report);
             }

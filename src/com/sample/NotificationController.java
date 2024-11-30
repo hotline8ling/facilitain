@@ -24,19 +24,19 @@ public class NotificationController extends HttpServlet {
         List<Notification> reportNotifications = new ArrayList<>();
         List<Notification> quotationNotifications = new ArrayList<>();
 
-        String reportSql = "SELECT n.NOTIFICATION_ID, n.MESSAGE, n.TYPE, n.IS_READ, n.CREATED_AT, " +
-                           "l.NAME AS locName, n.ITEM_LOC_ID " +
-                           "FROM C##FMO_ADM.FMO_ITEM_NOTIFICATIONS n " +
-                           "JOIN C##FMO_ADM.FMO_ITEM_LOCATIONS l ON n.ITEM_LOC_ID = l.ITEM_LOC_ID " +
-                           "WHERE n.TYPE = ? " +
-                           "ORDER BY n.IS_READ ASC, n.CREATED_AT DESC";
+        String reportSql = "SELECT NOTIFICATION_ID, MESSAGE, TYPE, IS_READ, CREATED_AT, " +
+                           "l.NAME AS locName, ITEM_LOC_ID " +
+                           "FROM FMO_ITEM_NOTIFICATIONS n " +
+                           "JOIN FMO_ITEM_LOCATIONS l ON ITEM_LOC_ID = l.ITEM_LOC_ID " +
+                           "WHERE TYPE = ? " +
+                           "ORDER BY IS_READ ASC, CREATED_AT DESC";
 
-        String quotationSql = "SELECT n.NOTIFICATION_ID, n.MESSAGE, n.TYPE, n.IS_READ, n.CREATED_AT, " +
-                              "l.NAME AS locName, n.ITEM_LOC_ID, n.ROOM_NO AS roomNo, n.FLOOR_NO AS floorNo, n.ITEM_NAME " +
-                              "FROM C##FMO_ADM.FMO_ITEM_NOTIFICATIONS n " +
-                              "JOIN C##FMO_ADM.FMO_ITEM_LOCATIONS l ON n.ITEM_LOC_ID = l.ITEM_LOC_ID " +
-                              "WHERE n.TYPE = ? " +
-                              "ORDER BY n.IS_READ ASC, n.CREATED_AT DESC";
+        String quotationSql = "SELECT NOTIFICATION_ID, MESSAGE, TYPE, IS_READ, CREATED_AT, " +
+                              "l.NAME AS locName, ITEM_LOC_ID, ROOM_NO AS roomNo, FLOOR_NO AS floorNo, ITEM_NAME " +
+                              "FROM FMO_ITEM_NOTIFICATIONS n " +
+                              "JOIN FMO_ITEM_LOCATIONS l ON ITEM_LOC_ID = l.ITEM_LOC_ID " +
+                              "WHERE TYPE = ? " +
+                              "ORDER BY IS_READ ASC, CREATED_AT DESC";
 
         try (Connection conn = PooledConnection.getConnection()) {
             // Fetch report notifications
@@ -97,7 +97,7 @@ public class NotificationController extends HttpServlet {
         String redirectUrl = request.getParameter("redirectUrl");
 
         // SQL query to mark the notification as read
-        String sql = "UPDATE C##FMO_ADM.FMO_ITEM_NOTIFICATIONS SET IS_READ = 1 WHERE NOTIFICATION_ID = ?";
+        String sql = "UPDATE FMO_ITEM_NOTIFICATIONS SET IS_READ = 1 WHERE NOTIFICATION_ID = ?";
 
         try (Connection conn = PooledConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
