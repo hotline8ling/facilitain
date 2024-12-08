@@ -109,7 +109,9 @@ public class quotationdisplaycontroller extends HttpServlet {
                   // Filter the quotations based on item ID
                   for (Quotation quotation : allQuotations) {
                       if (quotation.getItemId() == itemID) {
+                          if(quotation.getArchiveFlag() == 1){
                           filteredQuotations.add(quotation);
+                          }
                       }
                   }
 
@@ -140,11 +142,15 @@ public class quotationdisplaycontroller extends HttpServlet {
                   
                   // Add the "Archive" button inside a form
                   htmlContent.append("<td>");
-                  htmlContent.append("<form method='post' action='quotationdisplaycontroller'>");
+                  htmlContent.append("<form method='post' id='archiveForm").append(quotation.getQuotationId()).append("' action='quotationdisplaycontroller'>");
                   htmlContent.append("<input type='hidden' name='quotationId' value='").append(quotation.getQuotationId()).append("' />");
-                  htmlContent.append("<button type='submit' class='btn btn-secondary' title='Archive this quotation'>Archive</button>");
-                  htmlContent.append("</form>");
-                  htmlContent.append("</td>");
+                  htmlContent.append("<button type='button' class='btn btn-danger archive-btn' data-quotation-id='")
+                      .append(quotation.getQuotationId()).append("' onclick='confirmArchive(")
+                      .append(quotation.getQuotationId()).append(")'>Archive</button>");
+                  htmlContent.append("</form> </td>");
+
+
+
 
                   htmlContent.append("</tr>");
               }

@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="sample.model.Quotation" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,6 +14,9 @@
             z-index: 1050;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
    <!-- Main Quotations Modal -->
@@ -54,6 +58,24 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmArchive(quotationId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action will archive the selected quotation.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Archive it!',
+        cancelButtonText: 'Cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Submit the specific form for the quotation
+            document.getElementById('archiveForm' + quotationId).submit();
+        }
+    });
+}
+
+</script>
 
 
  <!-- Upload Quotation Modal -->
