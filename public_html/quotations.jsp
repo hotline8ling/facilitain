@@ -15,24 +15,25 @@
     </style>
 </head>
 <body>
-    <!-- Main Quotations Modal -->
-    <div class="modal fade" id="quotEquipmentModal" tabindex="-1" aria-labelledby="equipmentquot" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="equipmentquot">
-                        <span id="modalItemIdDisplay">Quotations</span>
-                    </h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container mt-2 mb-2">
-                        <!-- Upload Quotation Button -->
-                        <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#uploadQuotationModal">
-                            Upload Quotation
-                        </button>
+   <!-- Main Quotations Modal -->
+<div class="modal fade" id="quotEquipmentModal" tabindex="-1" aria-labelledby="equipmentquot" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="equipmentquot">
+                    <span id="modalItemIdDisplay">Quotations</span>
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-2 mb-2">
+                    <!-- Upload Quotation Button -->
+                    <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#uploadQuotationModal">
+                        Upload Quotation
+                    </button>
 
-                        <!-- Quotations Table -->
+                    <!-- Quotations Table -->
+                    <div class="table-responsive">
                         <table id="quotationsTable" class="table table-striped">
                             <thead>
                                 <tr>
@@ -40,21 +41,20 @@
                                     <th>Description</th>
                                     <th>Date Uploaded</th>
                                     <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                         
-<tbody id="quotationModalContent">
-                        <!-- Quotations will be loaded here via AJAX -->
-                    </tbody>
-
-                                
-                          
+                            <tbody id="quotationModalContent">
+                                <!-- Quotations will be loaded here via AJAX -->
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 
  <!-- Upload Quotation Modal -->
 <div class="modal fade" id="uploadQuotationModal" tabindex="-1" aria-labelledby="uploadQuotationLabel" aria-hidden="true">
@@ -207,41 +207,6 @@ $(document).on('hidden.bs.modal', function () {
         })
         .catch(error => console.error('Error fetching quotations:', error));
 }
-
-    
-
-    // Function to populate the hidden input when the upload modal is shown
-//    function populateUploadModal() {
-//        const itemId = sessionStorage.getItem('selectedItemId');
-//        console.log("Populating upload modal with itemID:", itemId);
-//
-//        const uploadHiddenInput = document.getElementById('uploadHiddenItemId');
-//        uploadHiddenInput.value = itemId;
-//        console.log("uploadHiddenItemId value:", uploadHiddenInput.value);
-//    }
-
-    // Attach the function to the modal's show event
-    //document.getElementById('uploadQuotationModal').addEventListener('show.bs.modal', populateUploadModal);
-
-    // Function to submit the form
-//    function submitQuotationForm() {
-//        const hiddenItemId = document.getElementById('uploadHiddenItemId').value;
-//        console.log("Submitting form with itemID:", hiddenItemId);
-//        // Retrieve the data-itemid attribute
-//    const itemID = button.getAttribute('data-itemid');
-//    
-//    // Set the value of the hidden input field
-//    document.getElementById('hiddenItemID').value = itemID;
-//    
-//    // Submit the form to quotations.jsp with the itemID
-//    document.getElementById('quotForm').submit();
-//
-//        if (hiddenItemId) {
-//            document.getElementById('uploadQuotationForm').submit();
-//        } else {
-//            alert("Item ID is missing!");
-//        }
-//    }
     </script>
 </body>
 </html>

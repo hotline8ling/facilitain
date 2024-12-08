@@ -263,6 +263,8 @@ public class mainController extends HttpServlet {
                 quotation.setDateUploaded(rsQuot.getDate("DATE_UPLOADED"));
                 quotation.setItemId(rsQuot.getInt("ITEM_ID"));
                 Blob blob = rsQuot.getBlob("QUOTATION_IMAGE");
+                quotation.setArchiveFlag(rsQuot.getInt("ARCHIVED_FLAG"));
+
                 byte[] imageBytes = null;
 
                 if (blob != null) {
